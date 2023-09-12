@@ -15,6 +15,7 @@ for index, row in student_data_frame.iterrows():
     # Access row.student or row.score
     pass
 
+
 # Keyword Method with iterrows()
 # {new_key:new_value for (index, row) in df.iterrows()}
 
@@ -27,8 +28,15 @@ nato_dict = {row.letter: row.code for _, row in df_nato_phonetic_alphabet.iterro
 
 # TODO 2. Create a list of the phonetic code words from a word that the user inputs.
 
-user_word = input("Enter a word: ")
 
-phonetic_list = [nato_dict[letter.upper()].title() for letter in user_word]
+def generate_phonetic_list():
+    user_word = input("Enter a word: ")
+    try:
+        phonetic_list = [nato_dict[letter.upper()].title() for letter in user_word]
+        print(phonetic_list)
+    except KeyError:
+        print("Sorry, only letters in the alphabet please.")
+        generate_phonetic_list()
 
-print(phonetic_list)
+
+generate_phonetic_list()
